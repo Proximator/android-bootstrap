@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.donnfelker.android.bootstrap.authenticator.ApiKeyProvider;
 import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity;
+import com.donnfelker.android.bootstrap.authenticator.FacebookAuthenticatorActivity;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.BootstrapService;
 import com.donnfelker.android.bootstrap.core.Constants;
@@ -42,6 +43,7 @@ import retrofit.converter.GsonConverter;
         injects = {
                 BootstrapApplication.class,
                 BootstrapAuthenticatorActivity.class,
+                FacebookAuthenticatorActivity.class,
                 MainActivity.class,
                 BootstrapTimerActivity.class,
                 CheckInsListFragment.class,

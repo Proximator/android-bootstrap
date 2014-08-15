@@ -1,13 +1,5 @@
 package com.donnfelker.android.bootstrap.authenticator;
 
-import static android.R.layout.simple_dropdown_item_1line;
-import static android.accounts.AccountManager.KEY_ACCOUNT_NAME;
-import static android.accounts.AccountManager.KEY_ACCOUNT_TYPE;
-import static android.accounts.AccountManager.KEY_AUTHTOKEN;
-import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
-import static android.view.KeyEvent.ACTION_DOWN;
-import static android.view.KeyEvent.KEYCODE_ENTER;
-import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
@@ -45,13 +37,23 @@ import com.github.kevinsawicki.wishlist.Toaster;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.Views;
 import retrofit.RetrofitError;
+
+import static android.R.layout.simple_dropdown_item_1line;
+import static android.accounts.AccountManager.KEY_ACCOUNT_NAME;
+import static android.accounts.AccountManager.KEY_ACCOUNT_TYPE;
+import static android.accounts.AccountManager.KEY_AUTHTOKEN;
+import static android.accounts.AccountManager.KEY_BOOLEAN_RESULT;
+import static android.view.KeyEvent.ACTION_DOWN;
+import static android.view.KeyEvent.KEYCODE_ENTER;
+import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 
 /**
  * Activity to authenticate the user against an API (example API on Parse.com)
@@ -81,12 +83,17 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
 
     private AccountManager accountManager;
 
-    @Inject BootstrapService bootstrapService;
-    @Inject Bus bus;
+    @Inject
+    BootstrapService bootstrapService;
+    @Inject
+    Bus bus;
 
-    @InjectView(id.et_email) protected AutoCompleteTextView emailText;
-    @InjectView(id.et_password) protected EditText passwordText;
-    @InjectView(id.b_signin) protected Button signInButton;
+    @InjectView(id.et_email)
+    protected AutoCompleteTextView emailText;
+    @InjectView(id.et_password)
+    protected EditText passwordText;
+    @InjectView(id.b_signin)
+    protected Button signInButton;
 
     private final TextWatcher watcher = validationTextWatcher();
 
@@ -268,9 +275,9 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
             @Override
             protected void onException(final Exception e) throws RuntimeException {
                 // Retrofit Errors are handled inside of the {
-                if(!(e instanceof RetrofitError)) {
+                if (!(e instanceof RetrofitError)) {
                     final Throwable cause = e.getCause() != null ? e.getCause() : e;
-                    if(cause != null) {
+                    if (cause != null) {
                         Toaster.showLong(BootstrapAuthenticatorActivity.this, cause.getMessage());
                     }
                 }
@@ -289,6 +296,12 @@ public class BootstrapAuthenticatorActivity extends ActionBarAccountAuthenticato
         };
         authenticationTask.execute();
     }
+
+    public void handleFacebookLogin(View view) {
+        startActivity(new Intent(this, FacebookAuthenticatorActivity.class));
+        finish();
+    }
+
 
     /**
      * Called when response is received from the server for confirm credentials

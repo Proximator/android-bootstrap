@@ -2,6 +2,8 @@
 
 package com.donnfelker.android.bootstrap.ui;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.accounts.OperationCanceledException;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -16,6 +18,7 @@ import android.view.Window;
 import com.donnfelker.android.bootstrap.BootstrapServiceProvider;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.BootstrapService;
+import com.donnfelker.android.bootstrap.core.Constants;
 import com.donnfelker.android.bootstrap.events.NavItemSelectedEvent;
 import com.donnfelker.android.bootstrap.util.Ln;
 import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
@@ -148,8 +151,21 @@ public class MainActivity extends BootstrapFragmentActivity {
 
             @Override
             public Boolean call() throws Exception {
-                final BootstrapService svc = serviceProvider.getService(MainActivity.this);
-                return svc != null;
+
+                AccountManager am = AccountManager.get(MainActivity.this);
+                Account[] accounts = am.getAccountsByType(Constants.Auth.BOOTSTRAP_ACCOUNT_TYPE);
+
+                if (accounts.length > 0) {
+
+                    Account account = accounts[0];
+                    am.getAuthToken(account, Constants.Auth.AUTHTOKEN_TYPE, null, MainActivity.this, null, null);
+
+                } else {
+
+                    return false;
+                }
+
+                return true;
             }
 
             @Override

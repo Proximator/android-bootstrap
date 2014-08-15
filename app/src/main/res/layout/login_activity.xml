@@ -84,6 +84,56 @@
                 android:textColor="@color/text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_social_login"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="24.0dip">
+
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/background_divider"
+                    android:layout_width="0.0dip"
+                    android:layout_height="1.0px"
+                    android:layout_marginLeft="4.0dip"
+                    android:layout_marginRight="4.0dip"
+                    android:layout_weight="1.0" />
+
+                <TextView
+                    android:textColor="#ffffffff"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="@dimen/margin_social_login"
+                    android:layout_height="wrap_content"
+                    android:text="@string/or" />
+
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/background_divider"
+                    android:layout_width="0.0dip"
+                    android:layout_height="1.0px"
+                    android:layout_marginLeft="4.0dip"
+                    android:layout_marginRight="4.0dip"
+                    android:layout_weight="1.0" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/b_facebook"
+                style="@style/ShadowText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/com_facebook_button_blue"
+                android:gravity="center"
+                android:onClick="handleFacebookLogin"
+                android:padding="10dp"
+                android:text="@string/label_sign_in_facebook"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
         </LinearLayout>
     </ScrollView>
 

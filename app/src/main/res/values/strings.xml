@@ -44,5 +44,10 @@
     <string name="navigation_drawer_close">Drawer Close</string>
     <string name="title_home">Home</string>
 
+    <!-- Change with your facebook app ID -->
+    <string name="app_id">123456789</string>
+    <string name="or">or</string>
+    <string name="label_sign_in_facebook">Sign In with Facebook</string>
+
 
 </resources>
